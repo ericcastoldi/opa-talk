@@ -1,4 +1,4 @@
-name: Run OPA Tests
+name: Run Policy Validation
 on: [push]
 jobs:
   Policy-Validation:
@@ -29,6 +29,9 @@ jobs:
         terraform plan -out=tfplan
         terraform show -json tfplan > tfplan.json
 
+    - name: Check Tags on tfplan.json
+      run: cat tfplan.json | grep "\"tags\""
+    
     - name: Run OPA Policy Validation
       run: |
         opa exec --decision exemplo/tags/deny_missing_tags  --bundle policy/ tfplan.json --fail-non-empty 
