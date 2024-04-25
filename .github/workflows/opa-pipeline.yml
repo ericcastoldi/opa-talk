@@ -14,6 +14,9 @@ jobs:
     
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
+      
+    - name: Set AWS Creds
+      uses: aws-actions/configure-aws-credentials@v4
 
     - name: Terraform Init
       id: init
