@@ -17,6 +17,8 @@ jobs:
       
     - name: Set AWS Creds
       uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-region: us-east1
 
     - name: Terraform Init
       id: init
