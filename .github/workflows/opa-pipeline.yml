@@ -31,4 +31,4 @@ jobs:
 
     - name: Run OPA Policy Validation
       run: |
-        opa exec --decision exemplo/tags/deny_missing_tags  --bundle policy/ tfplan.json
+        opa exec --decision exemplo/tags/deny_missing_tags  --bundle policy/ tfplan.json --fail-non-empty 
