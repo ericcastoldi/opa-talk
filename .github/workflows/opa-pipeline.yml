@@ -7,6 +7,9 @@ jobs:
     - name: Check out repository code
       uses: actions/checkout@v3
 
+    - name: Setup JQ
+      uses: dcarbone/install-jq-action@v2
+
     - name: Setup OPA
       uses: open-policy-agent/setup-opa@v2
       with:
@@ -30,7 +33,7 @@ jobs:
         terraform show -json tfplan > tfplan.json
 
     - name: Check Tags on tfplan.json
-      run: cat tfplan.json | grep "\"tags\""
+      run: jq . tfplan.json | grep "\"tags\""
     
     - name: Run OPA Policy Validation
       run: |
